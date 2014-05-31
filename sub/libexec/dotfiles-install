@@ -19,7 +19,7 @@ def install feature, *args
     case feature
     when 'dotfiles'
       install_bash_profile
-      install_dotfiles
+      update_dotfiles
     else
       exec 'dotfiles help install'
     end
@@ -40,10 +40,10 @@ def install_feature feature_name
   if File.exists? "dotfiles/dotfiles-#{feature_name}"
     %x(cp dotfiles/dotfiles-#{feature_name} ~/.dotfiles)
   end
-  install_dotfiles
+  update_dotfiles
 end
 
-def install_dotfiles
+def update_dotfiles
   # copy dotfiles index so anything recently added gets taken into consideration
   %x(dotfiles update)
 end
