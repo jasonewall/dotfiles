@@ -27,6 +27,11 @@ def install feature, *args
 end
 
 def install_feature feature_name
+  if File.exists?("sub/libexec/dotfiles-#{feature_name}")
+    puts "Calling dotfiles #{feature_name} to prep for install..."
+    %x(dotfiles #{feature_name})
+  end
+
   Dir.chdir feature_name do
     Dir['**'].each do |file_name|
       %x(cp #{file_name} ~/.#{file_name})
