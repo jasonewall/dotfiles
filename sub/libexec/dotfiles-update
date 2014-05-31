@@ -7,7 +7,7 @@ function dotfiles-update() {
         mkdir ~/.dotfiles
     fi
 
-    cp dotfiles ~/.dotfiles/dotfiles
+    cp dotfiles/dotfiles ~/.dotfiles/dotfiles
 }
 
 dotfiles-update
