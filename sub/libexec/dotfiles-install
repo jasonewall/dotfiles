@@ -37,10 +37,14 @@ def install_feature feature_name
       %x(cp #{file_name} ~/.#{file_name})
     end
   end
+  if File.exists? "dotfiles/dotfiles-#{feature_name}"
+    %x(cp dotfiles/dotfiles-#{feature_name} ~/.dotfiles)
+  end
   install_dotfiles
 end
 
 def install_dotfiles
+  # copy dotfiles index so anything recently added gets taken into consideration
   %x(dotfiles update)
 end
 
