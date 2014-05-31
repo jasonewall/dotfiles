@@ -36,6 +36,7 @@ You can compose you dotfiles as a series of features. For instance, the base rep
 
 Features are comprised of the following:
 
-- a sub script in sub/libexec named dotfiles-<featurename> (this script should implement at least a blank prep command)
-- an entry in dotfiles/dotfiles that looks for and calls if exists the following file
+- a sub script in sub/libexec named `dotfiles-<featurename>` (this script should implement at least a blank prep command)
+- an entry in dotfiles/dotfiles that looks for and calls, if it exists, the following file
 - a file in the dotfiles directory that sets up your env with things related to your feature
+- a directory of dotfiles that you want copied to your home directory (not . prefaced, `dotfiles install` will do this for you. This is to keep source control management simpler)
