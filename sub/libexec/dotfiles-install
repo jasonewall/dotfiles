@@ -18,8 +18,8 @@ def install feature, *args
   else
     case feature
     when 'dotfiles'
-      install_dotfiles
       install_bash_profile
+      install_dotfiles
     else
       exec 'dotfiles help install'
     end
@@ -41,18 +41,16 @@ def install_feature feature_name
 end
 
 def install_dotfiles
-  %x(cp dotfiles ~/.dotfiles)
+  %x(dotfiles update)
 end
 
 def install_bash_profile
   File.open File.expand_path('~/.bash_profile'), 'a' do |file|
     file.puts
-    file.puts 'if [ -f .dotfiles ]; then'
-    file.puts '    . .dotfiles'
+    file.puts 'if [ -f .dotfiles/dotfiles ]; then'
+    file.puts '    . .dotfiles/dotfiles'
     file.puts 'fi'
   end
 end
 
 install *ARGV
-
-

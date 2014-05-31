@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+# Usage: dotfiles update
+
+function dotfiles-update() {
+    if [ ! -d ~/.dotfiles ]; then
+        echo "Creating .dotfiles directory..."
+        mkdir ~/.dotfiles
+    fi
+
+    cp dotfiles ~/.dotfiles/dotfiles
+}
+
+dotfiles-update
