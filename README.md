@@ -40,3 +40,12 @@ Features are comprised of the following:
 - an entry in dotfiles/dotfiles that looks for and calls, if it exists, the following file
 - a file in the dotfiles directory that sets up your env with things related to your feature
 - a directory of dotfiles that you want copied to your home directory (not . prefaced, `dotfiles install` will do this for you. This is to keep source control management simpler)
+
+E.g. The git feature is comprised of (relative to root of repo)
+
+- File `sub/libexec/dotfiles-git`
+    - This has the prep command that downloads the completion scripts
+- Directory `git` 
+    - contains files like my `gitconfig`, and `gitignore_global`
+- File `dotfiles/dotfiles-git`
+    - File that is copied to ~/.dotfiles and eventually sourced by your .bash_profile
