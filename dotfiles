@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+if [ -f .dotfiles_git ]; then
+    . .dotfiles_git
+fi

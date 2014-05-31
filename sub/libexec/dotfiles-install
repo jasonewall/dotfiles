@@ -1,0 +1,53 @@
+#!/usr/bin/env ruby
+# Usage: dotfiles install <feature>
+
+FEATURES = [
+  'git'
+]
+
+# Provide dotfiles completions
+if ARGV.first == "--complete"
+  FEATURES.each { |x| puts x }
+  puts 'dotfiles'
+  exit
+end
+
+def install feature, *args
+  if FEATURES.include?(feature)
+    install_feature feature
+  else
+    case feature
+    when 'dotfiles'
+      install_dotfiles
+      install_bash_profile
+    else
+      exec 'dotfiles help install'
+    end
+  end
+end
+
+def install_feature feature_name
+  Dir.chdir feature_name do
+    Dir['**'].each do |file_name|
+      %x(cp #{file_name} ~/.#{file_name})
+    end
+  end
+  install_dotfiles
+end
+
+def install_dotfiles
+  %x(cp dotfiles ~/.dotfiles)
+end
+
+def install_bash_profile
+  File.open File.expand_path('~/.bash_profile'), 'a' do |file|
+    file.puts
+    file.puts 'if [ -f .dotfiles ]; then'
+    file.puts '    . .dotfiles'
+    file.puts 'fi'
+  end
+end
+
+install *ARGV
+
+
