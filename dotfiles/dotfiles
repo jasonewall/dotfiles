@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
 
-if [ -f dotfiles-git ]; then
-    . dotfiles-git
+if [ -f .dotfiles/dotfiles-git ]; then
+    . .dotfiles/dotfiles-git
 fi
