@@ -32,11 +32,14 @@ def install_feature feature_name
     %x(dotfiles #{feature_name} prep)
   end
 
-  Dir.chdir feature_name do
-    Dir['**'].each do |file_name|
-      %x(cp #{file_name} ~/.#{file_name})
+  if Dir.exists? feature_name
+    Dir.chdir feature_name do
+      Dir['**'].each do |file_name|
+        %x(cp #{file_name} ~/.#{file_name})
+      end
     end
   end
+
   if File.exists? "dotfiles/dotfiles-#{feature_name}"
     %x(cp dotfiles/dotfiles-#{feature_name} ~/.dotfiles)
   end
@@ -51,6 +54,7 @@ end
 def install_bash_profile
   File.open File.expand_path('~/.bash_profile'), 'a' do |file|
     file.puts
+    file.puts "### Added by dotfiles-install"
     file.puts 'if [ -f .dotfiles/dotfiles ]; then'
     file.puts '    . .dotfiles/dotfiles'
     file.puts 'fi'
