@@ -2,7 +2,8 @@
 # Usage: dotfiles install <feature>
 
 FEATURES = [
-  'git'
+  'git',
+  'rbenv'
 ]
 
 # Provide dotfiles completions
