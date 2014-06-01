@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+export PATH=~/.rbenv/bin:~/.rbenv/shims:$PATH:~/.rbenv/plugins/ruby-build/bin
+
+eval "$(rbenv init -)"
