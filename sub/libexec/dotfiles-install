@@ -32,11 +32,14 @@ def install_feature feature_name
     %x(dotfiles #{feature_name} prep)
   end
 
-  Dir.chdir feature_name do
-    Dir['**'].each do |file_name|
-      %x(cp #{file_name} ~/.#{file_name})
+  if Dir.exists? feature_name
+    Dir.chdir feature_name do
+      Dir['**'].each do |file_name|
+        %x(cp #{file_name} ~/.#{file_name})
+      end
     end
   end
+
   if File.exists? "dotfiles/dotfiles-#{feature_name}"
     %x(cp dotfiles/dotfiles-#{feature_name} ~/.dotfiles)
   end
