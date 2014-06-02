@@ -55,8 +55,8 @@ def install_bash_profile
   File.open File.expand_path('~/.bash_profile'), 'a' do |file|
     file.puts
     file.puts "### Added by dotfiles-install"
-    file.puts 'if [ -f .dotfiles/dotfiles ]; then'
-    file.puts '    . .dotfiles/dotfiles'
+    file.puts 'if [ -f ~/.dotfiles/dotfiles ]; then'
+    file.puts '    . ~/.dotfiles/dotfiles'
     file.puts 'fi'
   end
 end
