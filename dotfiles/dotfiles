@@ -4,6 +4,6 @@ if [ -f ~/.dotfiles/dotfiles-git ]; then
     . ~/.dotfiles/dotfiles-git
 fi
 
-if [ -f .dotfiles/dotfiles-rbenv ]; then
-    . .dotfiles/dotfiles-rbenv
+if [ -f ~/.dotfiles/dotfiles-rbenv ]; then
+    . ~/.dotfiles/dotfiles-rbenv
 fi
