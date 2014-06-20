@@ -14,6 +14,7 @@
     cob = checkout -b
     cop = checkout -p
     cm = commit -m
+    ce = commit -F .git/COMMIT_EDITMSG
     dc = diff --cached
     rp = reset -p
     st = status
