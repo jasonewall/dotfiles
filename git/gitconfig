@@ -16,6 +16,7 @@
     cm = commit -m
     ce = commit -F .git/COMMIT_EDITMSG
     dc = diff --cached
+    pr = pull-request
     rp = reset -p
     st = status
     un = log --oneline --graph --decorate @{u}..
