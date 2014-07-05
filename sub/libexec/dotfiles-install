@@ -3,7 +3,8 @@
 
 FEATURES = [
   'git',
-  'rbenv'
+  'rbenv',
+  'atom'
 ]
 
 # Provide dotfiles completions

@@ -7,3 +7,7 @@ fi
 if [ -f ~/.dotfiles/dotfiles-rbenv ]; then
     . ~/.dotfiles/dotfiles-rbenv
 fi
+
+if [ -f ~/.dotfiles/dotfiles-atom ]; then
+  . ~/.dotfiles/dotfiles-atom
+fi
