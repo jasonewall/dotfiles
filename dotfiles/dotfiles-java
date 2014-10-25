@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+export LIQUIBASE_HOME=~/.java/liquibase-3.2.2-bin
+export PATH=$PATH:$LIQUIBASE_HOME

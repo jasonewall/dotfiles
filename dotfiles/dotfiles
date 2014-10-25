@@ -11,3 +11,7 @@ fi
 if [ -f ~/.dotfiles/dotfiles-atom ]; then
   . ~/.dotfiles/dotfiles-atom
 fi
+
+if [ -f ~/.dotfiles/dotfiles-java ]; then
+  . ~/.dotfiles/dotfiles-java
+fi
