@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+export PATH=~/.jenv/bin:$PATH
+
+eval "$(jenv init -)"

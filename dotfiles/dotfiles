@@ -15,3 +15,7 @@ fi
 if [ -f ~/.dotfiles/dotfiles-java ]; then
   . ~/.dotfiles/dotfiles-java
 fi
+
+if [ -f ~/.dotfiles/dotfiles-jenv ]; then
+  . ~/.dotfiles/dotfiles-jenv
+fi
