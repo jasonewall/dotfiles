@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+export IVY_HOME=~/.ivy2
+export $PATH=$PATH:~/.ivy-cli/bin
+
+eval "$(ivy init -)"
+

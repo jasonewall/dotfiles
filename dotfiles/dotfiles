@@ -19,3 +19,7 @@ fi
 if [ -f ~/.dotfiles/dotfiles-jenv ]; then
     . ~/.dotfiles/dotfiles-jenv
 fi
+
+if [ -f ~/.dotfiles/dotfiles-ivy-cli ]; then
+    . ~/.dotfiles/dotfiles-ivy-cli
+fi
