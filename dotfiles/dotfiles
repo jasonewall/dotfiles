@@ -9,13 +9,13 @@ if [ -f ~/.dotfiles/dotfiles-rbenv ]; then
 fi
 
 if [ -f ~/.dotfiles/dotfiles-atom ]; then
-  . ~/.dotfiles/dotfiles-atom
+    . ~/.dotfiles/dotfiles-atom
 fi
 
 if [ -f ~/.dotfiles/dotfiles-java ]; then
-  . ~/.dotfiles/dotfiles-java
+    . ~/.dotfiles/dotfiles-java
 fi
 
 if [ -f ~/.dotfiles/dotfiles-jenv ]; then
-  . ~/.dotfiles/dotfiles-jenv
+    . ~/.dotfiles/dotfiles-jenv
 fi
