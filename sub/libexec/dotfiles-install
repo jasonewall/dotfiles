@@ -1,9 +1,9 @@
 #!/usr/bin/env ruby
 # Usage: dotfiles install <feature>
 
-FEATURES = [
-  'git'
-]
+FEATURES = Dir["dotfiles/*"].map do |f|
+  $1 if f =~ /dotfiles-(.*)/
+end
 
 # Provide dotfiles completions
 if ARGV.first == "--complete"
@@ -12,7 +12,7 @@ if ARGV.first == "--complete"
   exit
 end
 
-def install feature, *args
+def install feature = :help, *args
   if FEATURES.include?(feature)
     install_feature feature
   else
