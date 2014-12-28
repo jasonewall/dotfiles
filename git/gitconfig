@@ -22,3 +22,4 @@
     un = log --oneline --graph --decorate @{u}..
     un-synced = log --oneline --graph --decorate @{u}..
     diff-list = "!f() { : git log ; git log --oneline --graph --decorate ..$1; }; f"
+    dl = "!f() { : git log ; git log --oneline --graph --decorate ..$1; }; f"
