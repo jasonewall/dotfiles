@@ -10,7 +10,7 @@
 	smudge = git-media-smudge %f
 [alias]
     ap = add -p
-    co = checkout
+    co = "!f() { : git checkout ; gitco $1; }; f"
     cob = checkout -b
     cop = checkout -p
     cm = commit -m
