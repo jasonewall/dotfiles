@@ -1,5 +1,9 @@
 #!/usr/bin/env bash
 
+if [ -f ~/.dotfiles/dotfiles-profile ]; then
+    . ~/.dotfiles/dotfiles-profile
+fi
+
 if [ -f ~/.dotfiles/dotfiles-git ]; then
     . ~/.dotfiles/dotfiles-git
 fi

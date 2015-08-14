@@ -2,4 +2,6 @@
 
 export PATH=~/.rbenv/bin:~/.rbenv/shims:$PATH:~/.rbenv/plugins/ruby-build/bin
 
+alias bec='bundle exec'
+
 eval "$(rbenv init -)"
