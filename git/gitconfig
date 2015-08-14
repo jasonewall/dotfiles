@@ -23,3 +23,4 @@
     un-synced = log --oneline --graph --decorate @{u}..
     diff-list = "!f() { : git log ; git-branch-select log '--oneline --graph --decorate ..' $1; }; f"
     dl = "!f() { : git log ; git-branch-select log '--oneline --graph --decorate ..' $1; }; f"
+    amend = commit --amend --no-edit
