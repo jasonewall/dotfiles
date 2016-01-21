@@ -1,0 +1,33 @@
+#!/usr/bin/env bash
+# Usage: dotfiles atom <command>
+
+if [ "$1" = "--complete" ]; then
+    echo install-packages
+    exit
+fi
+
+function atom-run() {
+    command=$1
+    case $command in
+        install-packages)
+            install-packages
+            ;;
+        *)
+            exec dotfiles help atom ;;
+    esac
+}
+
+function install-packages() {
+    apm install zen
+    apm install vim-mode
+    apm install term3
+    apm install sort-lines
+    apm install language-puppet
+    apm install language-haml
+    apm install language-gherkin
+    apm install git-plus
+    apm install ex-mode
+    apm install color-picker
+}
+
+atom-run $1
