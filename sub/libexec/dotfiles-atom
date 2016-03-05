@@ -28,6 +28,8 @@ function install-packages() {
     apm install git-plus
     apm install ex-mode
     apm install color-picker
+    apm install minimap
+    apm install minimap-git-diff
 }
 
 atom-run $1
