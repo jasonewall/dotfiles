@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 # Usage: dotfiles update
+# Summary: Update the sourced dotfiles hierarchy when installing a new feature.
 
 function dotfiles-update() {
     if [ ! -d ~/.dotfiles ]; then

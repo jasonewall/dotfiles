@@ -10,6 +10,7 @@
 	smudge = git-media-smudge %f
 [alias]
     ap = add -p
+    dad = !echo $(curl -q https://icanhazdadjoke.com/) && git add
     co = "!f() { : git checkout ; git-branch-select checkout '' $1; }; f"
     cob = checkout -b
     cop = checkout -p
