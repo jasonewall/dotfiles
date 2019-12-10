@@ -23,3 +23,7 @@ fi
 if [ -f ~/.dotfiles/dotfiles-ivy-cli ]; then
     . ~/.dotfiles/dotfiles-ivy-cli
 fi
+
+if [ -f ~/.dotfiles/dotfiles-k8s ]; then
+    . ~/.dotfiles/dotfiles-k8s
+fi
