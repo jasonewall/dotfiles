@@ -3,3 +3,7 @@
 kubepo() {
     kubectl get po -n $1 | grep $2 | awk1 | head -n 1
 }
+
+kubeexec() {
+    kubectl exec -it -n $1 $(kubepo $1 $2) $3
+}
