@@ -1,5 +1,13 @@
 #!/usr/bin/env bash
 
 kubepo() {
-    kubectl get po -n $1 | grep $2 | awk1 | head -n 1
+    kubectl get po -n $1 | grep $2 | awk '{ print $1 }' | head -n 1
+}
+
+kubepos() {
+    if [ -z "$2" ]; then
+        kubectl get po -n $1
+    else
+        kubectl get po -n $1 | grep $2
+    fi
 }
