@@ -15,3 +15,13 @@ kubepos() {
 kubeexec() {
     kubectl exec -it -n $1 $(kubepo $1 $2) $3
 }
+
+kube() {
+    ruby -e <<EOF "$@"
+puts ARGV
+EOF
+}
+
+kubens() {
+    kubectl config get-contexts | grep "*" | awk '{ print $5 }'
+}
