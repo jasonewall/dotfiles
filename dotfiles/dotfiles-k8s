@@ -1,25 +1,24 @@
 #!/usr/bin/env bash
 
-kubepo() {
-    kubectl get po -n $1 | grep $2 | awk '{ print $1 }' | head -n 1
-}
-
-kubepos() {
-    if [ -z "$2" ]; then
-        kubectl get po -n $1
-    else
-        kubectl get po -n $1 | grep $2
-    fi
-}
-
-kubeexec() {
-    kubectl exec -it -n $1 $(kubepo $1 $2) $3
-}
-
 kube() {
-    ruby -e <<EOF "$@"
-puts ARGV
-EOF
+    ruby -e "$(cat <<RUBY
+def kube_pos
+  result = %x[kubectl get po -n #{ARGV[0]}]
+  puts result
+end
+
+def run
+  case ARGV.shift
+  when "po"; kube_po
+  when "pos"; kube_pos
+  when "exec"; kube_exec
+  else; help
+  end
+end
+run
+RUBY
+)
+" "$@"
 }
 
 kubens() {
