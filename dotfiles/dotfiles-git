@@ -2,6 +2,7 @@
 
 . ~/.git-completion.bash
 . ~/.git-prompt.sh
+. ~/.git-flow-completion.bash
 
 export PS1='@\h:\w $(__git_ps1 "(%s)")\n\$ '
 
