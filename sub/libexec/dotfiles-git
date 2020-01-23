@@ -9,6 +9,7 @@ fi
 
 GIT_COMPLETTION_URL="https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.bash"
 GIT_PROMPT_URL="https://raw.githubusercontent.com/git/git/master/contrib/completion/git-prompt.sh"
+GIT_FLOW_COMPLETION_URL="https://raw.githubusercontent.com/bobthecow/git-flow-completion/master/git-flow-completion.bash"
 
 function git-run() {
     command=$1
@@ -16,6 +17,7 @@ function git-run() {
         prep)
             curl -o git/git-completion.bash $GIT_COMPLETTION_URL
             curl -o git/git-prompt.sh $GIT_PROMPT_URL
+            curl -o git/git-flow-completion.bash $GIT_FLOW_COMPLETION_URL
             ;;
         *)
             exec dotfiles help git ;;
