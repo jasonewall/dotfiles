@@ -10,3 +10,4 @@ alias la='ls -A'
 alias l='ls -CF'
 
 alias awk1="awk '{ print \$1 }'"
+alias watch='watch '
