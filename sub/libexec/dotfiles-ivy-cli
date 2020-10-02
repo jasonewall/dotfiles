@@ -11,8 +11,7 @@ function ivy-cli-run() {
     command=$1
     case $command in
         prep)
-            eval "ivy_cli_dir=~/.ivy-cli"
-            if [ -d "$ivy_cli_dir" ]; then
+            if [ -d "$HOME/.ivy-cli" ]; then
                 cd ~/.ivy-cli && git pull
             else
                 git clone https://github.com/jasonewall/ivy-cli.git ~/.ivy-cli
