@@ -1,0 +1,98 @@
+#!/usr/bin/env bash
+# Usage: dotfiles vscode <prep|pull> --type
+# Help:
+#   pull - pull the vscode config <--type> from the active location into this repository
+#   prep - copy the config files of <--type> to the location where they will be active for the local systems VSCode install
+#   type can be:
+#       --wsl For keyboard shortcuts on a windows system using https://github.com/jasonewall/macify-your-pc
+
+set -e
+
+# Provide dotfiles completions
+if [ "$1" = "--complete" ]; then
+    command=$2
+    case $command in
+        prep|pull)
+            echo "--wsl"
+            ;;
+        *)
+            # spaces so tab smashing works
+            # otherwise completions never set a value for $2
+            echo "prep "
+            echo "pull "
+            ;;
+    esac
+    exit
+fi
+
+function vscode-run() {
+    command=$1
+    shift
+    case $command in
+        prep)
+            vscode-prep $@
+            ;;
+        pull)
+            vscode-pull $@
+            ;;
+        *)
+            exec dotfiles help vscode
+            ;;
+    esac
+}
+
+function vscode-prep() {
+    switch=$1
+    case $switch in
+        --wsl)
+            ;;
+        *)
+            vscode-missing-type
+            ;;
+    esac
+}
+
+function vscode-pull() {
+    switch=$1
+    case $switch in
+        --wsl)
+            repo_path=`vscode-repo-path`
+            settings_dir=`vscode-settings-path $switch`
+            type=`echo $switch | grep -Eo '(\w+)'` # drop the --
+            cp $settings_dir/keybindings.json $repo_path/$type/keybindings.json
+            cp $settings_dir/settings.json $repo_path/$type/settings.json
+            ;;
+        *)
+            vscode-missing-type
+            ;;
+    esac
+}
+
+function vscode-repo-path() {
+    echo "`dirname \"$0\"`/../../files/vscode"
+}
+
+function vscode-settings-path() {
+    switch=$1
+    case $switch in
+        --wsl)
+            win_home=`wslpath $(wslvar USERPROFILE)`
+            echo "$win_home/AppData/Roaming/Code/user"
+            ;;
+        *)
+            echo "Wrong argument for vscode-settings-path"
+            exit 2
+            ;;
+    esac
+}
+
+function vscode-missing-type() {
+    cat <<ERR
+
+  Error: Missing config type to pull!
+
+ERR
+    exec dotfiles help vscode
+}
+
+vscode-run $@
