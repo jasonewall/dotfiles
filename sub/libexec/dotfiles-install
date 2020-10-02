@@ -14,7 +14,7 @@ end
 
 def install feature = :help, *args
   if FEATURES.include?(feature)
-    install_feature feature
+    install_feature feature, *args
   else
     case feature
     when 'dotfiles'
@@ -26,10 +26,10 @@ def install feature = :help, *args
   end
 end
 
-def install_feature feature_name
+def install_feature feature_name, *args
   if File.exists?("sub/libexec/dotfiles-#{feature_name}")
     puts "Calling dotfiles #{feature_name} to prep for install..."
-    %x(dotfiles #{feature_name} prep)
+    system "dotfiles #{feature_name} prep #{args.join(' ')}"
   end
 
   if Dir.exists? feature_name

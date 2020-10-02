@@ -6,7 +6,7 @@ _dotfiles() {
     COMPREPLY=( $(compgen -W "$(dotfiles commands)" -- "$word") )
   else
     local command="${COMP_WORDS[1]}"
-    local completions="$(dotfiles completions "$command")"
+    local completions="$(dotfiles completions "$command" ${COMP_WORDS[@]:2})"
     COMPREPLY=( $(compgen -W "$completions" -- "$word") )
   fi
 }
