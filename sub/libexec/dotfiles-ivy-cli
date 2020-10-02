@@ -19,6 +19,7 @@ function ivy-cli-run() {
             ;;
         *)
             exec dotfiles help ivy-cli
+            ;;
     esac
 }
 
