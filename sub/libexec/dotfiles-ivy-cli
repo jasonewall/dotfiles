@@ -1,0 +1,26 @@
+#!/usr/bin/env bash
+# Usage: dotfiles ivy-cli prep
+
+# Provide dotfiles completions
+if [ "$1" = "--complete" ]; then
+    echo prep
+    exit
+fi
+
+function ivy-cli-run() {
+    command=$1
+    case $command in
+        prep)
+            eval "ivy_cli_dir=~/.ivy-cli"
+            if [ -d "$ivy_cli_dir" ]; then
+                cd ~/.ivy-cli && git pull
+            else
+                git clone https://github.com/jasonewall/ivy-cli.git ~/.ivy-cli
+            fi
+            ;;
+        *)
+            exec dotfiles help ivy-cli
+    esac
+}
+
+ivy-cli-run $1
