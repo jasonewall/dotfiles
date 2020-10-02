@@ -36,7 +36,7 @@ You can compose you dotfiles as a series of features. For instance, the base rep
 
 Features are comprised of the following:
 
-- a sub script in sub/libexec named `dotfiles-<featurename>` (this script should implement at least a blank prep command)
+- (Optional) a sub script in sub/libexec named `dotfiles-<featurename>` (this script should implement at a prep command; blank if not needed)
 - an entry in dotfiles/dotfiles that looks for and calls, if it exists, the following file
 - a file in the dotfiles directory that sets up your env with things related to your feature
 - a directory of dotfiles that you want copied to your home directory (not . prefaced, `dotfiles install` will do this for you. This is to keep source control management simpler)
@@ -55,8 +55,8 @@ E.g. The git feature is comprised of (relative to root of repo)
 We're all pretty fussy about our dotfiles. They're great because they let us set up our environment in the way that WE want it to work. I wrote this in a way that helps me keep track of what's going on, and hopefully generic enough that other people would find it useful. I also hope that if you add something you will want to share it with others. I want to propose the following to keep the "generic" stuff separate from our "personal" stuff that not everyone might want in their environment.
 
 1. Fork this repo before working with it (you'll have to anyways if you want to keep your features on github)
-2. Create a branch to store your personal feature sets and leave master as the generic starting point for other users
-3. When you want to add something to the install or update routines, or add things that are generic like uninstall, create a branch off master, and create a pull request to thejayvm/dotfiles:master
+2. Create a branch to store your personal feature sets and leave `develop` as the generic starting point for other users
+3. When you want to add something to the install or update routines, or add things that are generic like uninstall, create a branch off `develop`, and create a pull request to `jasonewall/dotfiles:develop`
 
 ## TODO Ideas
 
