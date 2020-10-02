@@ -1,3 +1,4 @@
+// from dotfiles
 {
     "vim.useSystemClipboard": true,
     "editor.stablePeek": true,

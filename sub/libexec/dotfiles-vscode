@@ -45,6 +45,11 @@ function vscode-prep() {
     switch=$1
     case $switch in
         --wsl)
+            repo_path=`vscode-repo-path`
+            type=`echo $switch | grep -Eo '(\w+)'` # drop the --
+            settings_dir=`vscode-settings-path $switch`
+            cp $repo_path/$type/keybindings.json $settings_dir/keybindings.json
+            cp $repo_path/$type/settings.json $settings_dir/settings.json
             ;;
         *)
             vscode-missing-type
@@ -57,8 +62,8 @@ function vscode-pull() {
     case $switch in
         --wsl)
             repo_path=`vscode-repo-path`
-            settings_dir=`vscode-settings-path $switch`
             type=`echo $switch | grep -Eo '(\w+)'` # drop the --
+            settings_dir=`vscode-settings-path $switch`
             cp $settings_dir/keybindings.json $repo_path/$type/keybindings.json
             cp $settings_dir/settings.json $repo_path/$type/settings.json
             ;;

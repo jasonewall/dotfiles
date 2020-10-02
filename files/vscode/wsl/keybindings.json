@@ -1,3 +1,4 @@
+// From dotfiles
 // Place your key bindings in this file to override the defaults
 [
     { "key": "ctrl+g",                "command": "-workbench.action.gotoLine" },
@@ -23,7 +24,7 @@
     { "key": "shift+ctrl+k j",        "command": "workbench.action.splitEditorDown" },
     /// - End window splits
 
-    { "key": "alt+shift+e",          "command": "workbench.view.explorer" },
+    { "key": "alt+shift+e",           "command": "workbench.view.explorer" },
 
     { "key": "ctrl+tab",              "command": "workbench.action.nextEditor" },
     { "key": "ctrl+shift+tab",        "command": "workbench.action.previousEditor" },
@@ -36,7 +37,7 @@
                                       "when": "editorFocus" },
     { "key": "shift+alt+g",           "command": "editor.action.previousMatchFindAction",
                                       "when": "editorFocus" },
-    { "key": "alt+shift+l",          "command": "editor.action.selectHighlights",
+    { "key": "alt+shift+l",           "command": "editor.action.selectHighlights",
                                       "when": "editorFocus" },
 
     { "key": "alt+shift+p",           "command": "workbench.action.showCommands" },
