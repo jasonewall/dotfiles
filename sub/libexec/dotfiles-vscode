@@ -16,7 +16,7 @@ if [ "$1" = "--complete" ]; then
             echo "--wsl"
             ;;
         *)
-            # spaces so tab smashing works
+            # include spaces so tab smashing works
             # otherwise completions never set a value for $2
             echo "prep "
             echo "pull "
