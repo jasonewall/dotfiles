@@ -29,12 +29,13 @@ fi
 
 function vscode-run() {
     command=$1
-    shift
     case $command in
         prep)
+            shift
             vscode-prep $@
             ;;
         pull)
+            shift
             vscode-pull $@
             ;;
         *)
