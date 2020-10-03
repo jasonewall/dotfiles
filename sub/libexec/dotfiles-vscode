@@ -5,6 +5,7 @@
 #   prep - copy the config files of <--type> to the location where they will be active for the local systems VSCode install
 #   type can be:
 #       --wsl For keyboard shortcuts on a windows system using https://github.com/jasonewall/macify-your-pc
+#       --mac For settings/keyboard shortcuts specific to a mac system - but follows the same key layout for muscle memory purposes
 
 set -e
 
