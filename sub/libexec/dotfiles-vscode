@@ -49,8 +49,8 @@ function vscode-prep() {
             repo_path=`vscode-repo-path`
             type=`echo $switch | grep -Eo '(\w+)'` # drop the --
             settings_dir=`vscode-settings-path $switch`
-            cp $repo_path/$type/keybindings.json $settings_dir/keybindings.json
-            cp $repo_path/$type/settings.json $settings_dir/settings.json
+            cp "$repo_path/$type/keybindings.json" "$settings_dir/keybindings.json"
+            cp "$repo_path/$type/settings.json" "$settings_dir/settings.json"
             ;;
         *)
             vscode-missing-type
