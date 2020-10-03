@@ -65,8 +65,8 @@ function vscode-pull() {
             repo_path=`vscode-repo-path`
             type=`echo $switch | grep -Eo '(\w+)'` # drop the --
             settings_dir=`vscode-settings-path $switch`
-            cp $settings_dir/keybindings.json $repo_path/$type/keybindings.json
-            cp $settings_dir/settings.json $repo_path/$type/settings.json
+            cp "$settings_dir/keybindings.json" "$repo_path/$type/keybindings.json"
+            cp "$settings_dir/settings.json" "$repo_path/$type/settings.json"
             ;;
         *)
             vscode-missing-type
@@ -86,7 +86,7 @@ function vscode-settings-path() {
             echo "$win_home/AppData/Roaming/Code/user"
             ;;
         --mac)
-            echo "$HOME/Library/Application\ Support/Code/User"
+            echo "$HOME/Library/Application Support/Code/User"
             ;;
         *)
             echo "Wrong argument for vscode-settings-path"
