@@ -52,7 +52,12 @@ def update_dotfiles
 end
 
 def install_bash_profile
-  File.open File.expand_path('~/.bash_profile'), 'a' do |file|
+  bash_profile = File.expand_path('~/.bash_profile')
+  unless File.exist? bash_profile
+    bash_profile = File.expand_path('~/.bashrc')
+  end
+
+  File.open bash_profile, 'a' do |file|
     file.puts
     file.puts "### Added by dotfiles-install"
     file.puts 'if [ -f ~/.dotfiles/dotfiles ]; then'
