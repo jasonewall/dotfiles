@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+keychain --nogui 2>/dev/null
+source ~/.keychain/$HOSTNAME-sh

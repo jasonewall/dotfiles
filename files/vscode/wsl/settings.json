@@ -1,0 +1,11 @@
+// from dotfiles
+{
+    "vim.useSystemClipboard": true,
+    "editor.stablePeek": true,
+    "workbench.editor.enablePreview": false,
+    "window.titleBarStyle": "native",
+    "files.trimTrailingWhitespace": true,
+    "files.eol": "\n",
+    "files.insertFinalNewline": true,
+    "files.trimFinalNewlines": true
+}
