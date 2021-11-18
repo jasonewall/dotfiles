@@ -15,7 +15,7 @@
     cut = checkout -b
     cop = checkout -p
     cm = commit -m
-    ce = commit -F .git/COMMIT_EDITMSG
+    redo = commit -F .git/COMMIT_EDITMSG
     dc = diff --cached
     pr = pull-request
     rp = reset -p
