@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+
+get_kubernetes_context()
+{
+  if [ -n "$KUBECONFIG" ]; then
+    CONTEXT=$(kubectl config current-context 2>/dev/null)
+    KUBE_SYMBOL=$'\xE2\x8E\x88 '
+    if [ -n "$CONTEXT" ]; then
+      NAMESPACE=$(kubectl config view --minify --output 'jsonpath={..namespace}')
+      if [ -n "$NAMESPACE" ]; then
+        echo "[${KUBE_SYMBOL}${CONTEXT}/${NAMESPACE}]"
+      else
+        echo "[${KUBE_SYMBOL}${CONTEXT}:None]"
+      fi
+    fi
+  fi
+}

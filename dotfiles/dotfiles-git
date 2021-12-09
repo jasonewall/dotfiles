@@ -4,9 +4,11 @@
 . ~/.git-prompt.sh
 . ~/.git-flow-completion.bash
 
-export PS1='@\h:\w $(__git_ps1 "(%s)")\n\$ '
-
 export GIT_EDITOR=vim
+
+function git_ps1() {
+    __git_ps1 "(%s)"
+}
 
 if [ -n "`which hub`" ]; then
     eval "$(hub alias -s)"
