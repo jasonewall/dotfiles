@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-for feature in ps1 git k8s-context rbenv atom jenv ivy-cli k8s profile wsl-keychain; do
+for feature in ps1 git k8s-context rbenv atom jenv ivy-cli shimmer k8s profile wsl-keychain; do
     if [ -f ~/.dotfiles/dotfiles-$feature ]; then
         source ~/.dotfiles/dotfiles-$feature
     fi
