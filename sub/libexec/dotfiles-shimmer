@@ -1,0 +1,26 @@
+#!/usr/bin/env bash
+# Usage: dotfiles shimmer prep
+
+# Provide dotfiles completions
+if [ "$1" = "--complete" ]; then
+    echo prep
+    exit
+fi
+
+function shimmer-run() {
+    local command=$1
+    case $command in
+        prep)
+            if [ -d "$HOME/.shimmer" ]; then
+                cd ~/.shimmer && git pull
+            else
+                git clone https://github.com/jasonewall/shimmer.git ~/.shimmer
+            fi
+            ;;
+        *)
+            exec dotfiles help shimmer
+            ;;
+    esac
+}
+
+shimmer-run $*
