@@ -1,8 +1,0 @@
-#!/usr/bin/env bash
-
-. ~/.git-completion.bash
-. ~/.git-prompt.sh
-
-export PS1='@\h:\w $(__git_ps1 "(%s)")\n\$ '
-
-export GIT_EDITOR=vim
