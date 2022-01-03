@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
-if [ -f ~/.dotfiles/dotfiles-git ]; then
-    . ~/.dotfiles/dotfiles-git
-fi
+for feature in ; do
+    if [ -f ~/.dotfiles/dotfiles-$feature ]; then
+        source ~/.dotfiles/dotfiles-$feature
+    fi
+done
