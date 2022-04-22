@@ -8,6 +8,8 @@
 [filter "media"]
 	clean = git-media-clean %f
 	smudge = git-media-smudge %f
+[init]
+    defaultBranch = main
 [alias]
     ap = dad -p
     dad = "!f() { git add $* && echo $(curl -s https://icanhazdadjoke.com/); }; f"

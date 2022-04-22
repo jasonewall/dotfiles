@@ -30,7 +30,7 @@ function get_kubernetes_context() {
 }
 
 function get_host() {
-    echo '\h'
+    hostname
 }
 
 export PS1="$(_green @'$(get_host)'):$(_light_blue \\w) $(_grey '$(git_ps1)') $(_blue '$(get_kubernetes_context)')\n\$ "
