@@ -1,6 +1,6 @@
 {
     "powermode.enabled": false,
-    "window.zoomLevel": 0,
+    "window.zoomLevel": -1,
     "editor.fontSize": 14,
     "search.useIgnoreFiles": false,
     "workbench.editor.enablePreview": false,
@@ -9,9 +9,6 @@
     "vim.useSystemClipboard": true,
     "files.insertFinalNewline": true,
     "files.trimFinalNewlines": true,
-    "vs-kubernetes": {
-        "vs-kubernetes.minikube-path": "/Users/jasonw/.vs-kubernetes/tools/minikube/darwin-amd64/minikube"
-    },
     "ruby.intellisense": "rubyLocate",
     "editor.cursorBlinking": "smooth",
     "editor.cursorSmoothCaretAnimation": true,
@@ -77,9 +74,6 @@
     ],
     "editor.suggestSelection": "first",
     "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
-    "search.useIgnoreFiles": false,
     "diffEditor.ignoreTrimWhitespace": false,
-    "editor.renderWhitespace": "none",
-    "files.trimTrailingWhitespace": true,
-    "files.insertFinalNewline": true
+    "editor.renderWhitespace": "none"
 }
