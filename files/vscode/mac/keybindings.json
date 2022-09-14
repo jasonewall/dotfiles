@@ -6,19 +6,19 @@
     },
     {
         "key": "shift+cmd+k l",
-        "command": "workbench.action.splitEditorRight"
+        "command": "workbench.action.moveEditorToRightGroup"
     },
     {
         "key": "shift+cmd+k h",
-        "command": "workbench.action.splitEditorLeft"
+        "command": "workbench.action.moveEditorToLeftGroup"
     },
     {
         "key": "shift+cmd+k k",
-        "command": "workbench.action.splitEditorUp"
+        "command": "workbench.action.moveEditorToAboveGroup"
     },
     {
         "key": "shift+cmd+k j",
-        "command": "workbench.action.splitEditorDown"
+        "command": "workbench.action.moveEditorToBelowGroup"
     },
     {
         "key": "cmd+p",
