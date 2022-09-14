@@ -75,5 +75,6 @@
     "editor.suggestSelection": "first",
     "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
     "diffEditor.ignoreTrimWhitespace": false,
-    "editor.renderWhitespace": "none"
+    "editor.renderWhitespace": "none",
+    "terminal.integrated.defaultProfile.osx": "bash"
 }
