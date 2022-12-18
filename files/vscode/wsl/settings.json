@@ -7,5 +7,17 @@
     "files.trimTrailingWhitespace": true,
     "files.eol": "\n",
     "files.insertFinalNewline": true,
-    "files.trimFinalNewlines": true
+    "files.trimFinalNewlines": true,
+    "search.useIgnoreFiles": true,
+    "vim.handleKeys": {
+        "<C-d>": true,
+        "<C-k>": false,
+        "<C-c>": false,
+        "<C-u>": false,
+        "<C-v>": false,
+        "<C-x>": false,
+        "<C-a>": false,
+        "<C-f>": false,
+        "<C-h>": false
+    }
 }
