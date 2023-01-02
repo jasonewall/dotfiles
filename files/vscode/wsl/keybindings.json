@@ -18,10 +18,10 @@
     /// - My standard window splits
     { "key": "ctrl+shift+k",          "command": "-editor.action.deleteLines",
                                       "when": "textInputFocus && !editorReadonly" },
-    { "key": "shift+ctrl+k l",        "command": "workbench.action.splitEditorRight" },
-    { "key": "shift+ctrl+k h",        "command": "workbench.action.splitEditorLeft" },
-    { "key": "shift+ctrl+k k",        "command": "workbench.action.splitEditorUp" },
-    { "key": "shift+ctrl+k j",        "command": "workbench.action.splitEditorDown" },
+    { "key": "shift+ctrl+k l",        "command": "workbench.action.moveEditorToRightGroup" },
+    { "key": "shift+ctrl+k h",        "command": "workbench.action.moveEditorToLeftGroup" },
+    { "key": "shift+ctrl+k k",        "command": "workbench.action.moveEditorToAboveGroup" },
+    { "key": "shift+ctrl+k j",        "command": "workbench.action.moveEditorToBelowGroup" },
     /// - End window splits
 
     { "key": "alt+shift+e",           "command": "workbench.view.explorer" },
