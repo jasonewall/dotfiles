@@ -27,12 +27,7 @@ Then install features that have been included or more likely you have created yo
 
 ## Features
 
-You can compose you dotfiles as a series of features. For instance, the base repo has a feature for git that:
-
-- Downloads the `git-completion` and `git-prompt.sh` scripts from the github git repo mirror
-- Adds a `.bash_profile` source call for each script
-- Changes my shell prompt to display the current git branch inside git repos
-- Sets my git editor
+You can compose your dotfiles as a series of features.
 
 Features are comprised of the following:
 
