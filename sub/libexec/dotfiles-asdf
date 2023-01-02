@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+# Usage: dotfiles asdf prep
+
+# Provide dotfiles completions
+if [ "$1" = "--complete" ]; then
+    echo prep
+    exit
+fi
+
+function asdf-run() {
+    local command=$1
+    case $command in
+        prep)
+            if [ ! -d ~/.asdf ]; then
+                git clone https://github.com/asdf-vm/asdf.git ~/.asdf
+            fi
+            ;;
+        *)
+            exec dotfiles help asdf
+            ;;
+    esac
+}
+
+asdf-run $*
