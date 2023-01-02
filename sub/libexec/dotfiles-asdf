@@ -14,6 +14,7 @@ function asdf-run() {
             if [ ! -d ~/.asdf ]; then
                 git clone https://github.com/asdf-vm/asdf.git ~/.asdf
             fi
+            touch ~/.tool-versions
             ;;
         *)
             exec dotfiles help asdf
