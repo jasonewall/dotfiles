@@ -1,0 +1,29 @@
+[user]
+	name = Jason Wall
+	email = javajo@gmail.com
+[core]
+	excludesfile = /Users/jason/.gitignore_global
+[push]
+	default = simple
+[filter "media"]
+	clean = git-media-clean %f
+	smudge = git-media-smudge %f
+[init]
+    defaultBranch = main
+[alias]
+    ap = dad -p
+    dad = "!f() { git add $* && echo $(curl -s https://icanhazdadjoke.com/); }; f"
+    co = "!f() { : git checkout ; git-branch-select checkout '' $1; }; f"
+    cut = checkout -b
+    cop = checkout -p
+    cm = commit -m
+    redo = commit -F .git/COMMIT_EDITMSG
+    dc = diff --cached
+    pr = pull-request
+    rp = reset -p
+    st = status
+    un = log --oneline --graph --decorate @{u}..
+    un-synced = log --oneline --graph --decorate @{u}..
+    diff-list = "!f() { : git log ; git-branch-select log '--oneline --graph --decorate ..' $1; }; f"
+    dl = "!f() { : git log ; git-branch-select log '--oneline --graph --decorate ..' $1; }; f"
+    amend = commit --amend --no-edit

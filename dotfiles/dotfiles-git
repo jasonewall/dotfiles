@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+
+. ~/.git-completion.bash
+. ~/.git-prompt.sh
+. ~/.git-flow-completion.bash
+
+export GIT_EDITOR=vim
+
+function git_ps1() {
+    __git_ps1 "(%s)"
+}
+
+if [ -n "`which hub`" ]; then
+    eval "$(hub alias -s)"
+fi

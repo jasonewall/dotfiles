@@ -1,0 +1,109 @@
+#!/usr/bin/env bash
+# Usage: dotfiles vscode <prep|pull> --type
+# Help:
+#   pull - pull the vscode config <--type> from the active location into this repository
+#   prep - copy the config files of <--type> to the location where they will be active for the local systems VSCode install
+#   type can be:
+#       --wsl For keyboard shortcuts on a windows system using https://github.com/jasonewall/macify-your-pc
+#       --mac For settings/keyboard shortcuts specific to a mac system - but follows the same key layout for muscle memory purposes
+
+set -e
+
+# Provide dotfiles completions
+if [ "$1" = "--complete" ]; then
+    command=$2
+    case $command in
+        prep|pull)
+            echo "--wsl"
+            echo "--mac"
+            ;;
+        *)
+            # include spaces so tab smashing works
+            # otherwise completions never set a value for $2
+            echo "prep "
+            echo "pull "
+            ;;
+    esac
+    exit
+fi
+
+function vscode-run() {
+    command=$1
+    case $command in
+        prep)
+            shift
+            vscode-prep $@
+            ;;
+        pull)
+            shift
+            vscode-pull $@
+            ;;
+        *)
+            exec dotfiles help vscode
+            ;;
+    esac
+}
+
+function vscode-prep() {
+    switch=$1
+    case $switch in
+        --wsl|--mac)
+            repo_path=`vscode-repo-path`
+            type=`echo $switch | grep -Eo '(\w+)'` # drop the --
+            settings_dir=`vscode-settings-path $switch`
+            cp "$repo_path/$type/keybindings.json" "$settings_dir/keybindings.json"
+            cp "$repo_path/$type/settings.json" "$settings_dir/settings.json"
+            ;;
+        *)
+            vscode-missing-type
+            ;;
+    esac
+}
+
+function vscode-pull() {
+    switch=$1
+    case $switch in
+        --wsl|--mac)
+            repo_path=`vscode-repo-path`
+            type=`echo $switch | grep -Eo '(\w+)'` # drop the --
+            settings_dir=`vscode-settings-path $switch`
+            cp "$settings_dir/keybindings.json" "$repo_path/$type/keybindings.json"
+            cp "$settings_dir/settings.json" "$repo_path/$type/settings.json"
+            ;;
+        *)
+            vscode-missing-type
+            ;;
+    esac
+}
+
+function vscode-repo-path() {
+    echo "`dirname \"$0\"`/../../files/vscode"
+}
+
+function vscode-settings-path() {
+    switch=$1
+    case $switch in
+        --wsl)
+            win_home=`wslpath $(wslvar USERPROFILE)`
+            echo "$win_home/AppData/Roaming/Code/user"
+            ;;
+        --mac)
+            echo "$HOME/Library/Application Support/Code/User"
+            ;;
+        *)
+            echo "Wrong argument for vscode-settings-path"
+            exit 2
+            ;;
+    esac
+}
+
+function vscode-missing-type() {
+    cat <<ERR
+
+  Error: Missing config type to pull!
+
+ERR
+    exec dotfiles help vscode
+}
+
+vscode-run $@

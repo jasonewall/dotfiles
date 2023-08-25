@@ -1,0 +1,36 @@
+#!/usr/bin/env bash
+
+function _green() {
+    echo "\[\033[01;32m\]$1\[\033[00m\]"
+}
+
+function _blue() {
+    echo "\[\033[01;34m\]$1\[\033[00m\]"
+}
+
+function _light_blue() {
+    echo "\[\033[01;94m\]$1\[\033[00m\]"
+}
+
+function _grey() {
+    echo "\[\033[01;90m\]$1\[\033[00m\]"
+}
+
+function _cyan() {
+    echo "\[\033[01;36m\]$1\[\033[00m\]"
+}
+
+
+function git_ps1() {
+    :
+}
+
+function get_kubernetes_context() {
+    :
+}
+
+function get_host() {
+    hostname
+}
+
+export PS1="$(_green @'$(get_host)'):$(_light_blue \\w) $(_grey '$(git_ps1)') $(_blue '$(get_kubernetes_context)')\n\$ "

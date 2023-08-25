@@ -1,0 +1,61 @@
+// Place your key bindings in this file to override the defaultsauto[]
+[
+    {
+        "key": "ctrl+b o",
+        "command": "workbench.action.focusNextGroup"
+    },
+    {
+        "key": "shift+cmd+k l",
+        "command": "workbench.action.moveEditorToRightGroup"
+    },
+    {
+        "key": "shift+cmd+k h",
+        "command": "workbench.action.moveEditorToLeftGroup"
+    },
+    {
+        "key": "shift+cmd+k k",
+        "command": "workbench.action.moveEditorToAboveGroup"
+    },
+    {
+        "key": "shift+cmd+k j",
+        "command": "workbench.action.moveEditorToBelowGroup"
+    },
+    {
+        "key": "cmd+p",
+        "command": "workbench.action.showAllSymbols"
+    },
+    {
+        "key": "cmd+t",
+        "command": "-workbench.action.showAllSymbols"
+    },
+    {
+        "key": "cmd+t",
+        "command": "workbench.action.quickOpen"
+    },
+    {
+        "key": "cmd+p",
+        "command": "-workbench.action.quickOpen"
+    },
+    {
+        "key": "cmd+t",
+        "command": "workbench.action.quickOpenNavigateNextInFilePicker",
+        "when": "inFilesPicker && inQuickOpen"
+    },
+    {
+        "key": "cmd+p",
+        "command": "-workbench.action.quickOpenNavigateNextInFilePicker",
+        "when": "inFilesPicker && inQuickOpen"
+    },
+    {
+        "key": "alt+g o",
+        "command": "vscode-github.browseCurrentFile"
+    },
+    {
+        "key": "cmd+r",
+        "command": "workbench.action.gotoSymbol"
+    },
+    {
+        "key": "shift+cmd+o",
+        "command": "-workbench.action.gotoSymbol"
+    }
+]

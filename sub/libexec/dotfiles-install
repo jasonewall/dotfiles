@@ -15,7 +15,7 @@ fi
 
 # def install feature = :help, *args
 #   if FEATURES.include?(feature)
-#     install_feature feature
+#     install_feature feature, *args
 #   else
 #     case feature
 #     when 'dotfiles'
@@ -27,10 +27,10 @@ fi
 #   end
 # end
 
-# def install_feature feature_name
+# def install_feature feature_name, *args
 #   if File.exists?("sub/libexec/dotfiles-#{feature_name}")
 #     puts "Calling dotfiles #{feature_name} to prep for install..."
-#     %x(dotfiles #{feature_name} prep)
+#     system "dotfiles #{feature_name} prep #{args.join(' ')}"
 #   end
 
 #   if Dir.exists? feature_name
@@ -53,7 +53,12 @@ fi
 # end
 
 # def install_bash_profile
-#   File.open File.expand_path('~/.bash_profile'), 'a' do |file|
+#   bash_profile = File.expand_path('~/.bash_profile')
+#   unless File.exist? bash_profile
+#     bash_profile = File.expand_path('~/.bashrc')
+#   end
+
+#   File.open bash_profile, 'a' do |file|
 #     file.puts
 #     file.puts "### Added by dotfiles-install"
 #     file.puts 'if [ -f ~/.dotfiles/dotfiles ]; then'

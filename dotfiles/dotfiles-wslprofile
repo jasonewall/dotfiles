@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+export WINHOME=`wslpath $(wslvar USERPROFILE)`
+
+alias open='explorer.exe'

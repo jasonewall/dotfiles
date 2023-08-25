@@ -1,0 +1,64 @@
+// From dotfiles
+// Place your key bindings in this file to override the defaults
+[
+    { "key": "ctrl+g",                "command": "-workbench.action.gotoLine" },
+    /// - Stupid VIM plugin overrides
+    { "key": "ctrl+g",                "command": "-extension.vim_ctrl+g" },
+    { "key": "ctrl+f",                "command": "-extension.vim_ctrl+f" },
+    { "key": "ctrl+w",                "command": "-extension.vim_ctrl+w" },
+    { "key": "ctrl+b",                "command": "-extension.vim_ctrl+b" },
+    { "key": "ctrl+t",                "command": "-extension.vim_ctrl+t" },
+    { "key": "ctrl+y",                "command": "-extension.vim_ctrl+y" },
+    { "key": "tab",                   "command": "-extension.vim_tab",
+                                      "when": "editorFocus && vim.active && !inDebugRepl && vim.mode != 'Insert'" },
+    { "key": "shift+tab",             "command": "-extension.vim_shift+tab",
+                                      "when": "editorFocus && vim.active && !inDebugRepl && vim.mode != 'Insert'" },
+    /// - End of stupid vim plugin overrides
+
+    /// - My standard window splits
+    { "key": "ctrl+shift+k",          "command": "-editor.action.deleteLines",
+                                      "when": "textInputFocus && !editorReadonly" },
+    { "key": "shift+ctrl+k l",        "command": "workbench.action.moveEditorToRightGroup" },
+    { "key": "shift+ctrl+k h",        "command": "workbench.action.moveEditorToLeftGroup" },
+    { "key": "shift+ctrl+k k",        "command": "workbench.action.moveEditorToAboveGroup" },
+    { "key": "shift+ctrl+k j",        "command": "workbench.action.moveEditorToBelowGroup" },
+    /// - End window splits
+
+    { "key": "alt+shift+e",           "command": "workbench.view.explorer" },
+
+    { "key": "ctrl+tab",              "command": "workbench.action.nextEditor" },
+    { "key": "ctrl+shift+tab",        "command": "workbench.action.previousEditor" },
+    { "key": "ctrl+tab",              "command": "-workbench.action.quickOpenPreviousRecentlyUsedEditorInGroup" },
+    { "key": "ctrl+shift+tab",        "command": "-workbench.action.quickOpenLeastRecentlyUsedEditorInGroup" },
+
+    { "key": "alt+shift+f",           "command": "workbench.action.findInFiles" },
+
+    { "key": "alt+g",                 "command": "editor.action.nextMatchFindAction",
+                                      "when": "editorFocus" },
+    { "key": "shift+alt+g",           "command": "editor.action.previousMatchFindAction",
+                                      "when": "editorFocus" },
+    { "key": "alt+shift+l",           "command": "editor.action.selectHighlights",
+                                      "when": "editorFocus" },
+
+    { "key": "alt+shift+p",           "command": "workbench.action.showCommands" },
+    { "key": "ctrl+b o",              "command": "workbench.action.focusNextGroup" },
+    { "key": "ctrl+b",                "command": "-workbench.action.toggleSidebarVisibility" },
+    { "key": "ctrl+t",                "command": "-workbench.action.showAllSymbols" },
+    { "key": "ctrl+t",                "command": "workbench.action.quickOpen" },
+    { "key": "alt+r",                 "command": "-workbench.action.terminal.toggleFindRegex",
+                                      "when": "terminalFindFocused && terminalProcessSupported || terminalFocus && terminalProcessSupported" },
+
+    { "key": "F5",                    "command": "workbench.action.gotoSymbol" },
+    { "key": "f5",                    "command": "-workbench.action.debug.start",
+                                      "when": "debuggersAvailable && !inDebugMode" },
+    { "key": "alt+/",                 "command": "editor.action.commentLine" },
+    { "key": "alt+z",                 "command": "-editor.action.toggleWordWrap" },
+    { "key": "alt+]",                 "command": "editor.action.indentLines",
+                                      "when": "editorTextFocus && !editorReadonly" },
+    { "key": "alt+[",                 "command": "editor.action.outdentLines",
+                                      "when": "editorTextFocus && !editorReadonly" },
+    { "key": "alt+shift+enter",       "command": "editor.action.insertLineBefore" ,
+                                      "when": "editorTextFocus && !editorReadonly" },
+
+    { "key": "ctrl+q",                "command": "workbench.action.quit" }
+]
