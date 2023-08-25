@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 # Usage: dotfiles install <feature>
 
+set -e
+
 function features() {
   ls dotfiles/dotfiles-* | sed $'s/dotfiles\/dotfiles-//'
 }
@@ -12,6 +14,45 @@ if [ "$1" = "--complete" ]; then
   features
   exit
 fi
+
+function install() {
+  local feature=$1
+  if [ -z "$feature" ]; then
+    dotfiles help install
+    exit
+  fi
+
+  local result
+  set +e
+  $(features | grep $feature)
+  result=$?
+  set -e
+  if [ $result -eq 0 ]; then
+    install_feature $feature
+  else
+    case $feature in
+    dotfiles)
+      install_bash_profile
+      update_dotfiles
+      ;;
+    *)
+      dotfiles help install
+      ;;
+    esac
+  fi
+}
+
+function install_feature() {
+  echo gonna install $1
+}
+
+function install_bash_profile() {
+  echo gonna install bash_profile
+}
+
+function update_dotfiles() {
+  echo gonna update dotfiles
+}
 
 # def install feature = :help, *args
 #   if FEATURES.include?(feature)
@@ -68,3 +109,4 @@ fi
 # end
 
 # install *ARGV
+install $*
