@@ -1,64 +1,65 @@
-#!/usr/bin/env ruby
+#!/usr/bin/env bash
 # Usage: dotfiles install <feature>
 
-FEATURES = Dir["dotfiles/*"].map do |f|
-  $1 if f =~ /dotfiles-(.*)/
-end
+function features() {
+  ls dotfiles/dotfiles-* | sed $'s/dotfiles\/dotfiles-//'
+}
 
 # Provide dotfiles completions
-if ARGV.first == "--complete"
-  FEATURES.each { |x| puts x }
-  puts 'dotfiles'
+#if ARGV.first == "--complete"
+if [ "$1" = "--complete" ]; then
+  echo 'dotfiles'
+  features
   exit
-end
+fi
 
-def install feature = :help, *args
-  if FEATURES.include?(feature)
-    install_feature feature
-  else
-    case feature
-    when 'dotfiles'
-      install_bash_profile
-      update_dotfiles
-    else
-      exec 'dotfiles help install'
-    end
-  end
-end
+# def install feature = :help, *args
+#   if FEATURES.include?(feature)
+#     install_feature feature
+#   else
+#     case feature
+#     when 'dotfiles'
+#       install_bash_profile
+#       update_dotfiles
+#     else
+#       exec 'dotfiles help install'
+#     end
+#   end
+# end
 
-def install_feature feature_name
-  if File.exists?("sub/libexec/dotfiles-#{feature_name}")
-    puts "Calling dotfiles #{feature_name} to prep for install..."
-    %x(dotfiles #{feature_name} prep)
-  end
+# def install_feature feature_name
+#   if File.exists?("sub/libexec/dotfiles-#{feature_name}")
+#     puts "Calling dotfiles #{feature_name} to prep for install..."
+#     %x(dotfiles #{feature_name} prep)
+#   end
 
-  if Dir.exists? feature_name
-    Dir.chdir feature_name do
-      Dir['**'].each do |file_name|
-        %x(cp #{file_name} ~/.#{file_name})
-      end
-    end
-  end
+#   if Dir.exists? feature_name
+#     Dir.chdir feature_name do
+#       Dir['**'].each do |file_name|
+#         %x(cp #{file_name} ~/.#{file_name})
+#       end
+#     end
+#   end
 
-  if File.exists? "dotfiles/dotfiles-#{feature_name}"
-    %x(cp dotfiles/dotfiles-#{feature_name} ~/.dotfiles)
-  end
-  update_dotfiles
-end
+#   if File.exists? "dotfiles/dotfiles-#{feature_name}"
+#     %x(cp dotfiles/dotfiles-#{feature_name} ~/.dotfiles)
+#   end
+#   update_dotfiles
+# end
 
-def update_dotfiles
-  # copy dotfiles index so anything recently added gets taken into consideration
-  %x(dotfiles update)
-end
+# def update_dotfiles
+#   # copy dotfiles index so anything recently added gets taken into consideration
+#   %x(dotfiles update)
+# end
 
-def install_bash_profile
-  File.open File.expand_path('~/.bash_profile'), 'a' do |file|
-    file.puts
-    file.puts "### Added by dotfiles-install"
-    file.puts 'if [ -f ~/.dotfiles/dotfiles ]; then'
-    file.puts '    . ~/.dotfiles/dotfiles'
-    file.puts 'fi'
-  end
-end
+# def install_bash_profile
+#   File.open File.expand_path('~/.bash_profile'), 'a' do |file|
+#     file.puts
+#     file.puts "### Added by dotfiles-install"
+#     file.puts 'if [ -f ~/.dotfiles/dotfiles ]; then'
+#     file.puts '    . ~/.dotfiles/dotfiles'
+#     file.puts 'fi'
+#   end
+# end
 
-install *ARGV
+# install *ARGV
