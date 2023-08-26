@@ -47,7 +47,12 @@ function install_feature() {
 }
 
 function install_bash_profile() {
-  echo gonna install bash_profile
+  echo <<-BASHRC >> ~/.bash_profile
+### Added by dotfiles install dotfiles
+if [ -f ~/.dotfiles/dotfiles ]; then
+    source ~/.dotfiles/dotfiles
+fi
+BASHRC
 }
 
 function update_dotfiles() {
