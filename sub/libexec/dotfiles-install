@@ -24,7 +24,7 @@ function install() {
 
   local result
   set +e
-  $(features | grep $feature)
+  features | grep $feature > /dev/null
   result=$?
   set -e
   if [ $result -eq 0 ]; then
