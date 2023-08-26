@@ -47,7 +47,14 @@ function install_feature() {
 }
 
 function install_bash_profile() {
-  cat <<-BASHRC >> ~/.bash_profile
+  local profile_filename
+  if [ -f ~/.bash_profile ]; then
+    profile_filename=~/.bash_profile
+  else
+    profile_filename=~/.bashrc
+  fi
+
+  cat <<-BASHRC >> $profile_filename
 ### Added by dotfiles install dotfiles
 if [ -f ~/.dotfiles/dotfiles ]; then
     source ~/.dotfiles/dotfiles
