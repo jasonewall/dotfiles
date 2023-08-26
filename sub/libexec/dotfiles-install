@@ -4,11 +4,14 @@
 set -e
 
 function features() {
-  ls dotfiles/dotfiles-* | sed $'s/dotfiles\/dotfiles-//'
+  pushd $_DOTFILES_ROOT/.. 1> /dev/null
+  set +e
+  ls dotfiles/dotfiles-* 2> /dev/null | sed $'s/dotfiles\/dotfiles-//'
+  set -e
+  popd 1> /dev/null
 }
 
 # Provide dotfiles completions
-#if ARGV.first == "--complete"
 if [ "$1" = "--complete" ]; then
   echo 'dotfiles'
   features
@@ -43,7 +46,27 @@ function install() {
 }
 
 function install_feature() {
-  echo gonna install $1
+  local feature=$1
+  shift
+
+  if [ -f $_DOTFILES_ROOT/libexec/dotfiles-$feature ]; then
+    echo Calling dotfiles $feature to prep for install...
+    dotfiles $feature prep $*
+  fi
+
+  local feature_config_dir=$_DOTFILES_ROOT/../$feature
+  if [ -d $feature_config_dir ]; then
+    for file in $(ls $feature_config_dir); do
+      cp $feature_config_dir/$file ~/.$file
+    done
+  fi
+
+  local feature_init_file=$_DOTFILES_ROOT/../dotfiles/dotfiles-$feature
+  if [ -f $feature_init_file ]; then
+    cp $feature_init_file ~/.dotfiles
+  fi
+
+  update_dotfiles
 }
 
 function install_bash_profile() {
@@ -66,59 +89,4 @@ function update_dotfiles() {
   dotfiles update
 }
 
-# def install feature = :help, *args
-#   if FEATURES.include?(feature)
-#     install_feature feature, *args
-#   else
-#     case feature
-#     when 'dotfiles'
-#       install_bash_profile
-#       update_dotfiles
-#     else
-#       exec 'dotfiles help install'
-#     end
-#   end
-# end
-
-# def install_feature feature_name, *args
-#   if File.exists?("sub/libexec/dotfiles-#{feature_name}")
-#     puts "Calling dotfiles #{feature_name} to prep for install..."
-#     system "dotfiles #{feature_name} prep #{args.join(' ')}"
-#   end
-
-#   if Dir.exists? feature_name
-#     Dir.chdir feature_name do
-#       Dir['**'].each do |file_name|
-#         %x(cp #{file_name} ~/.#{file_name})
-#       end
-#     end
-#   end
-
-#   if File.exists? "dotfiles/dotfiles-#{feature_name}"
-#     %x(cp dotfiles/dotfiles-#{feature_name} ~/.dotfiles)
-#   end
-#   update_dotfiles
-# end
-
-# def update_dotfiles
-#   # copy dotfiles index so anything recently added gets taken into consideration
-#   %x(dotfiles update)
-# end
-
-# def install_bash_profile
-#   bash_profile = File.expand_path('~/.bash_profile')
-#   unless File.exist? bash_profile
-#     bash_profile = File.expand_path('~/.bashrc')
-#   end
-
-#   File.open bash_profile, 'a' do |file|
-#     file.puts
-#     file.puts "### Added by dotfiles-install"
-#     file.puts 'if [ -f ~/.dotfiles/dotfiles ]; then'
-#     file.puts '    . ~/.dotfiles/dotfiles'
-#     file.puts 'fi'
-#   end
-# end
-
-# install *ARGV
 install $*
