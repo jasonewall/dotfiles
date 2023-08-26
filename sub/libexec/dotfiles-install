@@ -1,69 +1,92 @@
-#!/usr/bin/env ruby
+#!/usr/bin/env bash
 # Usage: dotfiles install <feature>
 
-FEATURES = Dir["dotfiles/*"].map do |f|
-  $1 if f =~ /dotfiles-(.*)/
-end
+set -e
+
+function features() {
+  pushd $_DOTFILES_ROOT/.. 1> /dev/null
+  set +e
+  ls dotfiles/dotfiles-* 2> /dev/null | sed $'s/dotfiles\/dotfiles-//'
+  set -e
+  popd 1> /dev/null
+}
 
 # Provide dotfiles completions
-if ARGV.first == "--complete"
-  FEATURES.each { |x| puts x }
-  puts 'dotfiles'
+if [ "$1" = "--complete" ]; then
+  echo 'dotfiles'
+  features
   exit
-end
+fi
 
-def install feature = :help, *args
-  if FEATURES.include?(feature)
-    install_feature feature, *args
+function install() {
+  local feature=$1
+  if [ -z "$feature" ]; then
+    dotfiles help install
+    exit
+  fi
+
+  local result
+  set +e
+  features | grep $feature > /dev/null
+  result=$?
+  set -e
+  if [ $result -eq 0 ]; then
+    install_feature $feature
   else
-    case feature
-    when 'dotfiles'
+    case $feature in
+    dotfiles)
       install_bash_profile
       update_dotfiles
-    else
-      exec 'dotfiles help install'
-    end
-  end
-end
+      ;;
+    *)
+      dotfiles help install
+      ;;
+    esac
+  fi
+}
 
-def install_feature feature_name, *args
-  if File.exists?("sub/libexec/dotfiles-#{feature_name}")
-    puts "Calling dotfiles #{feature_name} to prep for install..."
-    system "dotfiles #{feature_name} prep #{args.join(' ')}"
-  end
+function install_feature() {
+  local feature=$1
+  shift
 
-  if Dir.exists? feature_name
-    Dir.chdir feature_name do
-      Dir['**'].each do |file_name|
-        %x(cp #{file_name} ~/.#{file_name})
-      end
-    end
-  end
+  if [ -f $_DOTFILES_ROOT/libexec/dotfiles-$feature ]; then
+    echo Calling dotfiles $feature to prep for install...
+    dotfiles $feature prep $*
+  fi
 
-  if File.exists? "dotfiles/dotfiles-#{feature_name}"
-    %x(cp dotfiles/dotfiles-#{feature_name} ~/.dotfiles)
-  end
+  local feature_config_dir=$_DOTFILES_ROOT/../$feature
+  if [ -d $feature_config_dir ]; then
+    for file in $(ls $feature_config_dir); do
+      cp $feature_config_dir/$file ~/.$file
+    done
+  fi
+
+  local feature_init_file=$_DOTFILES_ROOT/../dotfiles/dotfiles-$feature
+  if [ -f $feature_init_file ]; then
+    cp $feature_init_file ~/.dotfiles
+  fi
+
   update_dotfiles
-end
+}
 
-def update_dotfiles
-  # copy dotfiles index so anything recently added gets taken into consideration
-  %x(dotfiles update)
-end
+function install_bash_profile() {
+  local profile_filename
+  if [ -f ~/.bash_profile ]; then
+    profile_filename=~/.bash_profile
+  else
+    profile_filename=~/.bashrc
+  fi
 
-def install_bash_profile
-  bash_profile = File.expand_path('~/.bash_profile')
-  unless File.exist? bash_profile
-    bash_profile = File.expand_path('~/.bashrc')
-  end
+  cat <<-BASHRC >> $profile_filename
+### Added by dotfiles install dotfiles
+if [ -f ~/.dotfiles/dotfiles ]; then
+    source ~/.dotfiles/dotfiles
+fi
+BASHRC
+}
 
-  File.open bash_profile, 'a' do |file|
-    file.puts
-    file.puts "### Added by dotfiles-install"
-    file.puts 'if [ -f ~/.dotfiles/dotfiles ]; then'
-    file.puts '    . ~/.dotfiles/dotfiles'
-    file.puts 'fi'
-  end
-end
+function update_dotfiles() {
+  dotfiles update
+}
 
-install *ARGV
+install $*
