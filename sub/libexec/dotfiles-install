@@ -63,7 +63,7 @@ BASHRC
 }
 
 function update_dotfiles() {
-  echo gonna update dotfiles
+  dotfiles update
 }
 
 # def install feature = :help, *args
